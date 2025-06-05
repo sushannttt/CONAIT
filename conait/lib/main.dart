@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 void main() {
   runApp(const ConaitApp());
@@ -72,13 +74,13 @@ class _TopNavBar extends StatelessWidget {
               const SizedBox(width: 14),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   Text(
                     'CONAIT',
-                    style: TextStyle(
+                    style: GoogleFonts.anton(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
-                      fontSize: 22,
+                      fontSize: 30,
                       letterSpacing: 1.5,
                     ),
                   ),
@@ -149,7 +151,7 @@ class _HeroSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 900,
+      height: 670,
       child: Stack(
         children: [
           Positioned.fill(
@@ -159,38 +161,48 @@ class _HeroSection extends StatelessWidget {
             ),
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              const SizedBox(width: 100),
               Flexible(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
+                     Text(
                       'Welcome to',
-                      style: TextStyle(
-                        color: Colors.black54,
+                      style: GoogleFonts.orbitron(
+                        color: Color.fromARGB(255, 255, 255, 255),
                         fontSize: 18,
                       ),
                     ),
-                    const SizedBox(height: 8),
-                    const Text(
-                      'CONAIT',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 38,
-                        letterSpacing: 2,
-                      ),
+                    const SizedBox(height: 4),
+                    Text(
+                    'CONAIT',
+                    style: GoogleFonts.brunoAceSc(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 70,
+                      letterSpacing: 2.5,
                     ),
+                  ),
                     const SizedBox(height: 8),
-                    const Text(
-                      'Connecting Artificial Intelligence and Technology',
-                      style: TextStyle(
-                        color: Colors.black54,
-                        fontSize: 16,
-                      ),
+                     AnimatedTextKit(
+                      animatedTexts: [
+                        TypewriterAnimatedText(
+                          'Connecting Artificial Intelligence and Technology',
+                          textStyle: GoogleFonts.orbitron(
+                            color: Color.fromARGB(255, 255, 255, 255),
+                            fontSize: 16,
+                          ),
+                          speed: const Duration(milliseconds: 60),
+                        ),
+                      ],
+                      repeatForever: true,
+                      pause: const Duration(seconds: 7),
+                      displayFullTextOnTap: true,
+                      stopPauseOnTap: true,
                     ),
                     const SizedBox(height: 24),
                     ElevatedButton(
@@ -209,24 +221,25 @@ class _HeroSection extends StatelessWidget {
                   ],
                 ),
               ),
+              const SizedBox(width: 400),
               Flexible(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
+                     Text(
                       'Explore our projects',
-                      style: TextStyle(
-                        color: Colors.black,
+                      style: GoogleFonts.brunoAceSc(
+                        color: Color.fromARGB(255, 255, 255, 255),
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     const SizedBox(height: 12),
-                    const Text(
+                     Text(
                       'Innovating in different domains of AI and technology.',
-                      style: TextStyle(
-                        color: Colors.black54,
+                      style: GoogleFonts.orbitron(
+                        color: Color.fromARGB(255, 255, 255, 255),
                         fontSize: 16,
                       ),
                     ),
@@ -264,34 +277,34 @@ class _ProjectsSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Text(
+          Text(
             'Our Projects',
-            style: TextStyle(
+            style: GoogleFonts.brunoAceSc(
               color: Colors.white,
-              fontSize: 28,
+              fontSize: 32,
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 32),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
               _ProjectCard(
-                icon: Icons.memory,
-                title: 'AI in Healthcare',
-                description: 'Leveraging AI to improve diagnostics and patient care.',
+                imagePath: 'assets/images/circles.png',
+                title: 'Circles',
+                description: 'Leveraging cutting-edge AI technologies to revolutionize healthcare diagnostics and patient care. Our solutions include advanced medical imaging analysis, predictive diagnostics, and personalized treatment recommendations.',
               ),
-              SizedBox(width: 32),
+              SizedBox(width: 40),
               _ProjectCard(
-                icon: Icons.security,
-                title: 'Cybersecurity AI',
-                description: 'AI-driven solutions for modern security challenges.',
+                imagePath: 'assets/images/coTree.png',
+                title: 'CoTree',
+                description: 'Developing state-of-the-art AI-driven security solutions to combat modern cyber threats. Our systems provide real-time threat detection, automated response mechanisms, and advanced pattern recognition for enhanced protection.',
               ),
-              SizedBox(width: 32),
+              SizedBox(width: 40),
               _ProjectCard(
-                icon: Icons.language,
-                title: 'AI for Communication',
-                description: 'Enhancing human communication with AI technologies.',
+                imagePath: 'assets/images/examEval.png',
+                title: 'ExamEval',
+                description: 'Transforming human communication through innovative AI technologies. From natural language processing to real-time translation, our solutions bridge communication gaps and enhance global connectivity.',
               ),
             ],
           ),
@@ -302,10 +315,10 @@ class _ProjectsSection extends StatelessWidget {
 }
 
 class _ProjectCard extends StatelessWidget {
-  final IconData icon;
+  final String imagePath;
   final String title;
   final String description;
-  const _ProjectCard({required this.icon, required this.title, required this.description});
+  const _ProjectCard({required this.imagePath, required this.title, required this.description});
 
   @override
   Widget build(BuildContext context) {
@@ -314,31 +327,33 @@ class _ProjectCard extends StatelessWidget {
       elevation: 8,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       child: Container(
-        width: 240,
-        padding: const EdgeInsets.all(24),
+        width: 360,
+        padding: const EdgeInsets.all(32),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, size: 48, color: const Color(0xFF6C2EB7)),
-            const SizedBox(height: 16),
+            Image.asset(imagePath, width: 100, height: 100),
+            const SizedBox(height: 24),
             Text(
               title,
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: Color(0xFF6C2EB7),
+              style: GoogleFonts.brunoAceSc(
+                color: const Color(0xFF6C2EB7),
                 fontWeight: FontWeight.bold,
-                fontSize: 18,
+                fontSize: 24,
               ),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 16),
             Text(
               description,
               textAlign: TextAlign.center,
-              style: const TextStyle(
+              style: GoogleFonts.orbitron(
                 color: Colors.black87,
-                fontSize: 14,
+                fontSize: 16,
+                height: 1.5,
               ),
             ),
+            const SizedBox(height: 24),
           ],
         ),
       ),
