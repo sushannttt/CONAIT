@@ -31,113 +31,81 @@ class LandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true, // Allow body behind AppBar
       backgroundColor: Colors.white,
+      appBar: PreferredSize(
+  preferredSize: const Size.fromHeight(70),
+  child: Container(
+    padding: const EdgeInsets.symmetric(horizontal: 40),
+    decoration: BoxDecoration(
+      color: Colors.black.withOpacity(0.0),
+      border: const Border(
+        bottom: BorderSide(color: Colors.transparent),
+      ),
+    ),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        // Logo + Title
+        Row(
+          children: [
+            
+            Text(
+              'CONAIT',
+              style: GoogleFonts.orbitron(
+                color: Colors.white,
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 1.5,
+              ),
+            ),
+          ],
+        ),
+
+        // Navigation Tabs
+        Row(
+          children: [
+            _AppBarTab(title: 'Home'),
+            const SizedBox(width: 24),
+            _AppBarTab(title: 'About'),
+            const SizedBox(width: 24),
+            _AppBarTab(title: 'Projects'),
+            const SizedBox(width: 24),
+            _AppBarTab(title: 'Contact'),
+            const SizedBox(width: 32),
+
+            // Register Button
+            ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFFB33EFF),
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+              ),
+              child: const Text(
+                'Register',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+          ],
+        ),
+      ],
+    ),
+  ),
+),
+
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(height: 32),
-            const _TopNavBar(),
-            const SizedBox(height: 24),
+            
             const _HeroSection(),
             const SizedBox(height: 32),
             const _ProjectsSection(),
             const SizedBox(height: 48),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class _TopNavBar extends StatelessWidget {
-  const _TopNavBar();
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 40.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
-              // Placeholder logo
-              Container(
-                width: 40,
-                height: 40,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: const Icon(Icons.hub, color: Color(0xFF6C2EB7), size: 28),
-              ),
-              const SizedBox(width: 14),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'CONAIT',
-                    style: GoogleFonts.anton(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30,
-                      letterSpacing: 1.5,
-                    ),
-                  ),
-                  Text(
-                    'Connecting Artificial Intelligence and Technology',
-                    style: TextStyle(
-                      color: Colors.white70,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              _NavLink('Home'),
-              _NavLink('About'),
-              _NavLink('Projects'),
-              _NavLink('Contact'),
-              const SizedBox(width: 16),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  foregroundColor: const Color(0xFF6C2EB7),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                  elevation: 0,
-                ),
-                onPressed: () {},
-                child: const Text('Get Started', style: TextStyle(fontWeight: FontWeight.bold)),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _NavLink extends StatelessWidget {
-  final String label;
-  const _NavLink(this.label);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12.0),
-      child: Text(
-        label,
-        style: const TextStyle(
-          color: Colors.white,
-          fontSize: 15,
-          fontWeight: FontWeight.w500,
         ),
       ),
     );
@@ -360,3 +328,27 @@ class _ProjectCard extends StatelessWidget {
     );
   }
 }
+
+class _AppBarTab extends StatelessWidget {
+  final String title;
+  const _AppBarTab({required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        // Add your navigation logic here
+      },
+      child: Text(
+        title,
+        style: GoogleFonts.orbitron(
+          color: Colors.white,
+          fontSize: 14,
+          fontWeight: FontWeight.bold,
+          letterSpacing: 1,
+        ),
+      ),
+    );
+  }
+}
+
