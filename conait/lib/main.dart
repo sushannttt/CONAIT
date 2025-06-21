@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'Pages/circles_desc.dart';
 
 void main() {
   runApp(const ConaitApp());
@@ -290,39 +291,51 @@ class _ProjectCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Colors.white,
-      elevation: 8,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      child: Container(
-        width: 360,
-        padding: const EdgeInsets.all(32),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(imagePath, width: 100, height: 100),
-            const SizedBox(height: 24),
-            Text(
-              title,
-              textAlign: TextAlign.center,
-              style: GoogleFonts.brunoAceSc(
-                color: const Color(0xFF6C2EB7),
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
+    return InkWell(
+      onTap: () {
+        if (title == 'Circles') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const CirclesDesc()),
+          );
+        }
+        // Add navigation for other cards here when needed
+      },
+      borderRadius: BorderRadius.circular(20),
+      child: Card(
+        color: Colors.white,
+        elevation: 8,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        child: Container(
+          width: 360,
+          padding: const EdgeInsets.all(32),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(imagePath, width: 100, height: 100),
+              const SizedBox(height: 24),
+              Text(
+                title,
+                textAlign: TextAlign.center,
+                style: GoogleFonts.brunoAceSc(
+                  color: const Color(0xFF6C2EB7),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
+                ),
               ),
-            ),
-            const SizedBox(height: 16),
-            Text(
-              description,
-              textAlign: TextAlign.center,
-              style: GoogleFonts.orbitron(
-                color: Colors.black87,
-                fontSize: 16,
-                height: 1.5,
+              const SizedBox(height: 16),
+              Text(
+                description,
+                textAlign: TextAlign.center,
+                style: GoogleFonts.orbitron(
+                  color: Colors.black87,
+                  fontSize: 16,
+                  height: 1.5,
+                ),
               ),
-            ),
-            const SizedBox(height: 24),
-          ],
+              const SizedBox(height: 24),
+            ],
+          ),
         ),
       ),
     );
