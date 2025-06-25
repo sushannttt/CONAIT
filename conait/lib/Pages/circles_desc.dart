@@ -1,4 +1,5 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:conait/Components/screenshot_carousal.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -28,55 +29,89 @@ class _CirclesDescState extends State<CirclesDesc> {
       body: SingleChildScrollView(
         child: Stack(
           children: [
-            // 🔹 TALL background image (like a poster)
+            // 🔹 Background Image
             Image.asset(
               'assets/images/bitmap.png',
               width: screenWidth,
-              fit: BoxFit.cover,
-              // Make the image tall manually (you can also measure it dynamically)
               height: 3500,
+              fit: BoxFit.cover,
             ),
 
-            // 🔹 Foreground content stacked over image
+            // 🔹 Foreground UI
             Column(
               children: [
-                const SizedBox(height: 120), // space from top for appbar
+                const SizedBox(height: 120), // Top padding
 
                 Center(
-                  child: SizedBox(
-                    width: 1200,
-                    child: DefaultTextStyle(
-                      style: GoogleFonts.daysOne(
-                        fontSize: 300,
-                        color: Colors.white,
-                        shadows: const [
-                          Shadow(
-                            blurRadius: 10.0,
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        width: 1200,
+                        child: DefaultTextStyle(
+                          style: GoogleFonts.daysOne(
+                            fontSize: 300,
                             color: Colors.white,
-                            offset: Offset(0, 0),
+                            shadows: const [
+                              Shadow(
+                                blurRadius: 10.0,
+                                color: Colors.white,
+                                offset: Offset(0, 0),
+                              ),
+                            ],
                           ),
-                        ],
+                          child: animationDone
+                              ? const Text("Circles")
+                              : AnimatedTextKit(
+                                  isRepeatingAnimation: true,
+                                  animatedTexts: [
+                                    FlickerAnimatedText('Circles'),
+                                  ],
+                                  onFinished: _onFlickerComplete,
+                                ),
+                        ),
                       ),
-                      child: animationDone
-                          ? const Text("Circles")
-                          : AnimatedTextKit(
-                              isRepeatingAnimation: false,
-                              animatedTexts: [
-                                FlickerAnimatedText('Circles'),
-                              ],
-                              onFinished: _onFlickerComplete,
-                            ),
-                    ),
+                      if (animationDone)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10.0),
+                          child: AnimatedTextKit(
+                            isRepeatingAnimation: false,
+                            animatedTexts: [
+                              TypewriterAnimatedText(
+                                "Where real connections stay close",
+                                textStyle: GoogleFonts.orbitron(
+                                  fontSize: 24,
+                                  color: Colors.white,
+                                  letterSpacing: 1.2,
+                                ),
+                                speed: const Duration(milliseconds: 50),
+                              ),
+                            ],
+                          ),
+                        ),
+                    ],
                   ),
                 ),
 
-                const SizedBox(height: 800), // content or scrollable space
+                const SizedBox(height: 800), // scrollable space
+
+                const SizedBox(height: 100),
+                ScreenshotCarousel(
+                  imagePaths: [
+                    'assets/screenshots/ss01.jpg',
+                    'assets/screenshots/ss02.jpg',
+                    'assets/screenshots/ss03.jpg',
+                  ],
+                  captions: [
+                    'Create Communities',
+                    'What the Heck is a Circle?!?!?',
+                    'Customizable Posts',
+                  ],
+                ),
               ],
             ),
           ],
         ),
       ),
-      // 🔹 Floating AppBar (optional — not scrolling)
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(70),
         child: _buildAppBar(),
@@ -149,4 +184,3 @@ class _AppBarTab extends StatelessWidget {
     );
   }
 }
-
