@@ -63,6 +63,8 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/images/circles_background.jpeg
+    - assets/images/bitmap.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

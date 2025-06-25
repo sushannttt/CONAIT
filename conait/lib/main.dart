@@ -1,3 +1,4 @@
+import 'package:conait/Pages/cotree_desc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -299,7 +300,12 @@ class _ProjectCard extends StatelessWidget {
             MaterialPageRoute(builder: (context) => const CirclesDesc()),
           );
         }
-        // Add navigation for other cards here when needed
+        else if(title == 'CoTree') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const CotreeDesc()),
+          );
+        }// Add navigation for other cards here when needed
       },
       borderRadius: BorderRadius.circular(20),
       child: Card(
