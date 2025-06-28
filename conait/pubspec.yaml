@@ -40,6 +40,7 @@ dependencies:
   lottie: ^3.2.0
   animated_text_lerp: 2.0.0
   carousel_slider: ^5.1.1
+  visibility_detector: ^0.4.0
 
 dev_dependencies:
   flutter_test:
@@ -70,6 +71,15 @@ flutter:
     - assets/screenshots/ss01.jpg
     - assets/screenshots/ss02.jpg
     - assets/screenshots/ss03.jpg
+    - assets/screenshots/ss04.jpg
+    - assets/screenshots/ss05.jpg
+    - assets/screenshots/ss06.jpg
+    - assets/screenshots/ss07.jpg
+    - assets/screenshots/ss08.jpg
+    - assets/screenshots/ss09.jpg
+    - assets/screenshots/ss10.jpg
+    - assets/screenshots/ss11.jpg
+    - assets/screenshots/ss12.jpg
 
   # To add assets to your application, add an assets section, like this:
   # assets:
