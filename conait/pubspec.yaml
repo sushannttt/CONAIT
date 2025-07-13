@@ -66,6 +66,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/images/exam_bg.jpg
     - assets/images/circles_background.jpeg
     - assets/images/bitmap.png
     - assets/screenshots/ss01.jpg
@@ -80,6 +81,7 @@ flutter:
     - assets/screenshots/ss10.jpg
     - assets/screenshots/ss11.jpg
     - assets/screenshots/ss12.jpg
+    
 
   # To add assets to your application, add an assets section, like this:
   # assets:

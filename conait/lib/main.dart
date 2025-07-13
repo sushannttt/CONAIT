@@ -1,4 +1,5 @@
 import 'package:conait/Pages/cotree_desc.dart';
+import 'package:conait/Pages/exameval_desc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -36,77 +37,79 @@ class LandingPage extends StatelessWidget {
       extendBodyBehindAppBar: true, // Allow body behind AppBar
       backgroundColor: Colors.white,
       appBar: PreferredSize(
-  preferredSize: const Size.fromHeight(70),
-  child: Container(
-    padding: const EdgeInsets.symmetric(horizontal: 40),
-    decoration: BoxDecoration(
-      color: Colors.black.withOpacity(0.0),
-      border: const Border(
-        bottom: BorderSide(color: Colors.transparent),
-      ),
-    ),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        // Logo + Title
-        Row(
-          children: [
-            
-            Text(
-              'CONAIT',
-              style: GoogleFonts.orbitron(
-                color: Colors.white,
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-                letterSpacing: 1.5,
+        preferredSize: const Size.fromHeight(100),
+        child: Padding(
+          padding: const EdgeInsets.only(top: 10),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 40),
+            decoration: BoxDecoration(
+              color: Colors.black.withOpacity(0.0),
+              border: const Border(
+                bottom: BorderSide(color: Colors.transparent),
               ),
             ),
-          ],
-        ),
-
-        // Navigation Tabs
-        Row(
-          children: [
-            _AppBarTab(title: 'Home'),
-            const SizedBox(width: 24),
-            _AppBarTab(title: 'About'),
-            const SizedBox(width: 24),
-            _AppBarTab(title: 'Projects'),
-            const SizedBox(width: 24),
-            _AppBarTab(title: 'Contact'),
-            const SizedBox(width: 32),
-
-            // Register Button
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFFB33EFF),
-                foregroundColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                // Logo + Title
+                Row(
+                  children: [
+                    Text(
+                      'CONAIT',
+                      style: GoogleFonts.orbitron(
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1.5,
+                      ),
+                    ),
+                  ],
                 ),
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-              ),
-              child: const Text(
-                'Register',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-            ),
-          ],
-        ),
-      ],
-    ),
-  ),
-),
 
-      body: SingleChildScrollView(
+                // Navigation Tabs
+                Row(
+                  children: [
+                    _AppBarTab(title: 'Home'),
+                    const SizedBox(width: 24),
+                    _AppBarTab(title: 'About'),
+                    const SizedBox(width: 24),
+                    _AppBarTab(title: 'Projects'),
+                    const SizedBox(width: 24),
+                    _AppBarTab(title: 'Contact'),
+                    const SizedBox(width: 32),
+
+                    // Register Button
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFFB33EFF),
+                        foregroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 24, vertical: 12),
+                      ),
+                      child: const Text(
+                        'Register',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+
+      body: const SingleChildScrollView(
         child: Column(
           children: [
-            
-            const _HeroSection(),
-            const SizedBox(height: 32),
-            const _ProjectsSection(),
-            const SizedBox(height: 48),
+            _HeroSection(),
+            SizedBox(height: 32),
+            _ProjectsSection(),
+            SizedBox(height: 48),
           ],
         ),
       ),
@@ -131,7 +134,6 @@ class _HeroSection extends StatelessWidget {
             ),
           ),
           Row(
-            
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(width: 100),
@@ -140,7 +142,7 @@ class _HeroSection extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                     Text(
+                    Text(
                       'Welcome to',
                       style: GoogleFonts.orbitron(
                         color: Color.fromARGB(255, 255, 255, 255),
@@ -149,16 +151,16 @@ class _HeroSection extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                    'CONAIT',
-                    style: GoogleFonts.brunoAceSc(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 70,
-                      letterSpacing: 2.5,
+                      'CONAIT',
+                      style: GoogleFonts.brunoAceSc(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 70,
+                        letterSpacing: 2.5,
+                      ),
                     ),
-                  ),
                     const SizedBox(height: 8),
-                     AnimatedTextKit(
+                    AnimatedTextKit(
                       animatedTexts: [
                         TypewriterAnimatedText(
                           'Connecting Artificial Intelligence and Technology',
@@ -182,11 +184,13 @@ class _HeroSection extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 14),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 28, vertical: 14),
                         elevation: 0,
                       ),
                       onPressed: () {},
-                      child: const Text('Learn More', style: TextStyle(fontWeight: FontWeight.bold)),
+                      child: const Text('Learn More',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
                     ),
                   ],
                 ),
@@ -197,7 +201,7 @@ class _HeroSection extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                     Text(
+                    Text(
                       'Explore our projects',
                       style: GoogleFonts.brunoAceSc(
                         color: Color.fromARGB(255, 255, 255, 255),
@@ -206,7 +210,7 @@ class _HeroSection extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 12),
-                     Text(
+                    Text(
                       'Innovating in different domains of AI and technology.',
                       style: GoogleFonts.orbitron(
                         color: Color.fromARGB(255, 255, 255, 255),
@@ -217,14 +221,17 @@ class _HeroSection extends StatelessWidget {
                     OutlinedButton(
                       style: OutlinedButton.styleFrom(
                         foregroundColor: Colors.deepPurple,
-                        side: const BorderSide(color: Colors.deepPurple, width: 2),
+                        side: const BorderSide(
+                            color: Colors.deepPurple, width: 2),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 14),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 28, vertical: 14),
                       ),
                       onPressed: () {},
-                      child: const Text('See Projects', style: TextStyle(fontWeight: FontWeight.bold)),
+                      child: const Text('See Projects',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
                     ),
                   ],
                 ),
@@ -256,25 +263,28 @@ class _ProjectsSection extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 32),
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
+            children: [
               _ProjectCard(
                 imagePath: 'assets/images/circles.png',
                 title: 'Circles',
-                description: 'Leveraging cutting-edge AI technologies to revolutionize healthcare diagnostics and patient care. Our solutions include advanced medical imaging analysis, predictive diagnostics, and personalized treatment recommendations.',
+                description:
+                    'Leveraging cutting-edge AI technologies to revolutionize healthcare diagnostics and patient care. Our solutions include advanced medical imaging analysis, predictive diagnostics, and personalized treatment recommendations.',
               ),
               SizedBox(width: 40),
               _ProjectCard(
                 imagePath: 'assets/images/coTree.png',
                 title: 'CoTree',
-                description: 'Developing state-of-the-art AI-driven security solutions to combat modern cyber threats. Our systems provide real-time threat detection, automated response mechanisms, and advanced pattern recognition for enhanced protection.',
+                description:
+                    'Developing state-of-the-art AI-driven security solutions to combat modern cyber threats. Our systems provide real-time threat detection, automated response mechanisms, and advanced pattern recognition for enhanced protection.',
               ),
               SizedBox(width: 40),
               _ProjectCard(
                 imagePath: 'assets/images/examEval.png',
                 title: 'ExamEval',
-                description: 'Transforming human communication through innovative AI technologies. From natural language processing to real-time translation, our solutions bridge communication gaps and enhance global connectivity.',
+                description:
+                    'ExamEval is an AI-driven solution designed to evaluate students’ written answers by comparing them to reference answer. Say goodbye to human bias, delays, and inconsistency—ExamEval makes grading faster, fairer, and smarter',
               ),
             ],
           ),
@@ -288,7 +298,10 @@ class _ProjectCard extends StatelessWidget {
   final String imagePath;
   final String title;
   final String description;
-  const _ProjectCard({required this.imagePath, required this.title, required this.description});
+  const _ProjectCard(
+      {required this.imagePath,
+      required this.title,
+      required this.description});
 
   @override
   Widget build(BuildContext context) {
@@ -299,13 +312,18 @@ class _ProjectCard extends StatelessWidget {
             context,
             MaterialPageRoute(builder: (context) => const CirclesDesc()),
           );
-        }
-        else if(title == 'CoTree') {
+        } else if (title == 'CoTree') {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => const CotreeDesc()),
           );
-        }// Add navigation for other cards here when needed
+        } else if (title == 'ExamEval') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const ExamEvalDesc()),
+          );
+        }
+        // Add navigation for other cards here when needed
       },
       borderRadius: BorderRadius.circular(20),
       child: Card(
@@ -370,4 +388,3 @@ class _AppBarTab extends StatelessWidget {
     );
   }
 }
-
