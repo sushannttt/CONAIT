@@ -1,6 +1,6 @@
 [build]
   command = ""
-  publish = "build/web"
+  publish = "conait/build/web"
 
 [[redirects]]
   from = "/*"
