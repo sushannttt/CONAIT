@@ -129,13 +129,13 @@ class _CotreeDescState extends State<CotreeDesc> {
             alignment: Alignment.center,
             children: [
               Image.asset(
-                'images/cotree_gradient.jpg',
+                'assets/images/cotree_gradient.jpg',
                 width: double.infinity,
                 fit: BoxFit.cover,
                 alignment: Alignment.topCenter,
               ),
               Image.asset(
-                'images/cotree_hand.png',
+                'assets/images/cotree_hand.png',
                 fit: BoxFit.contain,
               ),
             ],
@@ -293,7 +293,7 @@ class _CotreeDescState extends State<CotreeDesc> {
           // Gradient bar at the bottom
           const SizedBox(height: 32),
           Image.asset(
-            'images/cotree_gradient.jpg',
+            'assets/images/cotree_gradient.jpg',
             width: double.infinity,
             fit: BoxFit.cover,
             alignment: Alignment.topCenter,
