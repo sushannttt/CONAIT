@@ -67,7 +67,7 @@ flutter:
   assets:
     - assets/images/
     - assets/images/exam_bg.jpg
-    - assets/images/cotree_gradient.png
+    - assets/images/cotree_hand.png
     - assets/images/circles_background.jpeg
     - assets/images/bitmap.png
     - assets/screenshots/ss01.jpg
