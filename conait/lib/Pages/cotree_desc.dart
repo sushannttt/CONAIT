@@ -298,7 +298,8 @@ class _CotreeDescState extends State<CotreeDesc> {
               // Coverflow-style carousel section
               const SizedBox(height: 40),
               SizedBox(
-                height: 260,
+                height: 500, // Adjust height as needed
+                width: double.infinity,
                 child: _CoverflowCarousel(),
               ),
               const SizedBox(height: 40),
@@ -348,7 +349,7 @@ class _CarouselCard extends StatelessWidget {
     return Transform.rotate(
       angle: rotation,
       child: Container(
-        width: 160,
+        width: 60,
         height: 300,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(24),
@@ -379,20 +380,20 @@ class _CoverflowCarouselState extends State<_CoverflowCarousel> {
   final PageController _pageController =
       PageController(viewportFraction: 0.38, initialPage: 3);
   final List<String> images = [
-    'assets/images/Cotree 1.png',
-    'assets/images/Cotree 2.png',
-    'assets/images/Cotree 3.png',
-    'assets/images/Cotree 4.png',
-    'assets/images/Cotree 5.png',
-    'assets/images/Cotree 6.png',
-    'assets/images/Cotree 7.png',
-    'assets/images/Cotree 8.png',
-    'assets/images/Cotree 9.png',
-    'assets/images/Cotree 10.png',
-    'assets/images/Cotree 11.png',
-    'assets/images/Cotree 12.png',
-    'assets/images/Cotree 13.png',
-    'assets/images/Cotree 14.png',
+    'assets/images/Cotree_1.png',
+    'assets/images/Cotree_2.png',
+    'assets/images/Cotree_3.png',
+    'assets/images/Cotree_4.png',
+    'assets/images/Cotree_5.png',
+    'assets/images/Cotree_6.png',
+    'assets/images/Cotree_7.png',
+    'assets/images/Cotree_8.png',
+    'assets/images/Cotree_9.png',
+    'assets/images/Cotree_10.png',
+    'assets/images/Cotree_11.png',
+    'assets/images/Cotree_12.png',
+    'assets/images/Cotree_13.png',
+    'assets/images/Cotree_14.png',
   ];
 
   @override
@@ -421,8 +422,8 @@ class _CoverflowCarouselState extends State<_CoverflowCarousel> {
                 ..rotateZ(angle),
               child: Container(
                 margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-                width: 180, // Set your desired width
-                height: 320, // Set your desired height
+                width: 10, // Set your desired width
+                height: 500, // Set your desired height
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(24),
                   boxShadow: [

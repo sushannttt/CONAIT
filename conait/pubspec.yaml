@@ -82,6 +82,20 @@ flutter:
     - assets/screenshots/ss10.jpg
     - assets/screenshots/ss11.jpg
     - assets/screenshots/ss12.jpg
+    - assets/images/Cotree_1.png
+    - assets/images/Cotree_2.png
+    - assets/images/Cotree_3.png
+    - assets/images/Cotree_4.png
+    - assets/images/Cotree_5.png
+    - assets/images/Cotree_6.png
+    - assets/images/Cotree_7.png
+    - assets/images/Cotree_8.png
+    - assets/images/Cotree_9.png
+    - assets/images/Cotree_10.png
+    - assets/images/Cotree_11.png
+    - assets/images/Cotree_12.png
+    - assets/images/Cotree_13.png
+    - assets/images/Cotree_14.png
     
 
   # To add assets to your application, add an assets section, like this:
