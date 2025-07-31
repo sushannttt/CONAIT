@@ -96,6 +96,14 @@ flutter:
     - assets/images/Cotree_12.png
     - assets/images/Cotree_13.png
     - assets/images/Cotree_14.png
+    - assets/images/blue_andblackgrad.jpeg
+    - assets/images/black_andPurpGrad.jpeg
+    - assets/images/exameval_1.png
+    - assets/images/exameval_2.png
+    - assets/images/exameval_3.png
+    - assets/images/exameval_4.png
+    - assets/images/exameval_5.png
+    - assets/images/exameval_6.png
     
 
   # To add assets to your application, add an assets section, like this:

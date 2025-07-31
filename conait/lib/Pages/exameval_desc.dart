@@ -149,8 +149,12 @@ class _ExamEvalDescState extends State<ExamEvalDesc> {
                       builder: (context, constraints) {
                         // 3 cards visible at a time
                         const cardSpacing = 16.0;
-                        const horizontalPadding = 24.0 * 2 + 12.0 * 2; // left/right padding + SizedBox
-                        final cardWidth = (constraints.maxWidth - horizontalPadding - cardSpacing * 2) / 3;
+                        const horizontalPadding = 24.0 * 2 +
+                            12.0 * 2; // left/right padding + SizedBox
+                        final cardWidth = (constraints.maxWidth -
+                                horizontalPadding -
+                                cardSpacing * 2) /
+                            3;
                         return SizedBox(
                           height: 300,
                           child: Row(
@@ -172,11 +176,19 @@ class _ExamEvalDescState extends State<ExamEvalDesc> {
                                   ],
                                 ),
                                 child: IconButton(
-                                  icon: const Icon(Icons.arrow_back_ios_new, color: Colors.black87),
+                                  icon: const Icon(Icons.arrow_back_ios_new,
+                                      color: Colors.black87),
                                   onPressed: () {
                                     _scrollController.animateTo(
-                                      (_scrollController.offset - cardWidth - cardSpacing).clamp(0.0, _scrollController.position.maxScrollExtent),
-                                      duration: const Duration(milliseconds: 400),
+                                      (_scrollController.offset -
+                                              cardWidth -
+                                              cardSpacing)
+                                          .clamp(
+                                              0.0,
+                                              _scrollController
+                                                  .position.maxScrollExtent),
+                                      duration:
+                                          const Duration(milliseconds: 400),
                                       curve: Curves.ease,
                                     );
                                   },
@@ -195,7 +207,8 @@ class _ExamEvalDescState extends State<ExamEvalDesc> {
                                         height: 280,
                                         child: const Featurecard(
                                           title: 'AI-Powered Grading',
-                                          description: "Uses natural language understanding to assess how close a student's response is to the reference answer.",
+                                          description:
+                                              "Uses natural language understanding to assess how close a student's response is to the reference answer.",
                                           icon: Icons.offline_bolt,
                                         ),
                                       ),
@@ -205,7 +218,8 @@ class _ExamEvalDescState extends State<ExamEvalDesc> {
                                         height: 280,
                                         child: const Featurecard(
                                           title: 'Instant Results',
-                                          description: 'Grade hundreds of answer sheets in seconds',
+                                          description:
+                                              'Grade hundreds of answer sheets in seconds',
                                           icon: Icons.integration_instructions,
                                         ),
                                       ),
@@ -215,7 +229,8 @@ class _ExamEvalDescState extends State<ExamEvalDesc> {
                                         height: 280,
                                         child: const Featurecard(
                                           title: ' Flexible Input Formats',
-                                          description: 'Supports text-based responses and scanned handwritten sheets (OCR enabled).',
+                                          description:
+                                              'Supports text-based responses and scanned handwritten sheets (OCR enabled).',
                                           icon: Icons.online_prediction,
                                         ),
                                       ),
@@ -225,7 +240,8 @@ class _ExamEvalDescState extends State<ExamEvalDesc> {
                                         height: 280,
                                         child: const Featurecard(
                                           title: 'Detailed Feedback',
-                                          description: 'Highlights strengths and weaknesses in answers—line-by-line if needed.',
+                                          description:
+                                              'Highlights strengths and weaknesses in answers—line-by-line if needed.',
                                           icon: Icons.search,
                                         ),
                                       ),
@@ -235,7 +251,8 @@ class _ExamEvalDescState extends State<ExamEvalDesc> {
                                         height: 280,
                                         child: const Featurecard(
                                           title: 'Analytics Dashboard',
-                                          description: 'View class-wise performance, common mistakes, and improvement areas.',
+                                          description:
+                                              'View class-wise performance, common mistakes, and improvement areas.',
                                           icon: Icons.bar_chart,
                                         ),
                                       ),
@@ -261,11 +278,15 @@ class _ExamEvalDescState extends State<ExamEvalDesc> {
                                   ],
                                 ),
                                 child: IconButton(
-                                  icon: const Icon(Icons.arrow_forward_ios, color: Colors.black87),
+                                  icon: const Icon(Icons.arrow_forward_ios,
+                                      color: Colors.black87),
                                   onPressed: () {
                                     _scrollController.animateTo(
-                                      _scrollController.offset + cardWidth + cardSpacing,
-                                      duration: const Duration(milliseconds: 400),
+                                      _scrollController.offset +
+                                          cardWidth +
+                                          cardSpacing,
+                                      duration:
+                                          const Duration(milliseconds: 400),
                                       curve: Curves.ease,
                                     );
                                   },
@@ -277,7 +298,19 @@ class _ExamEvalDescState extends State<ExamEvalDesc> {
                       },
                     ),
                     const SizedBox(height: 60),
-                    // Add more content here as needed
+                    Center(
+                      child: ScreenshotCarousel(
+                        width: 1450,
+                        height: 650,
+                        screenshotPaths: const [
+                          'assets/images/exameval_1.png',
+                          'assets/images/exameval_2.png',
+                          'assets/images/exameval_3.png',
+                          
+                          // add as many as you want
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -351,6 +384,224 @@ class _AppBarTab extends StatelessWidget {
           fontWeight: FontWeight.bold,
           letterSpacing: 1,
         ),
+      ),
+    );
+  }
+}
+
+class ScreenshotCarousel extends StatefulWidget {
+  final List<String> screenshotPaths;
+  final double width;
+  final double height;
+
+  const ScreenshotCarousel({
+    super.key,
+    required this.screenshotPaths,
+    required this.width,
+    required this.height,
+  });
+
+  @override
+  State<ScreenshotCarousel> createState() => _ScreenshotCarouselState();
+}
+
+class _ScreenshotCarouselState extends State<ScreenshotCarousel> {
+  late final PageController _pageController;
+  int _current = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(viewportFraction: 1);
+    _pageController.addListener(() {
+      final page = _pageController.page?.round() ?? 0;
+      if (page != _current) {
+        setState(() => _current = page);
+      }
+    });
+  }
+
+  void _goTo(int delta) {
+    final target = (_current + delta).clamp(0, widget.screenshotPaths.length - 1);
+    _pageController.animateToPage(
+      target,
+      duration: const Duration(milliseconds: 400),
+      curve: Curves.ease,
+    );
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  Widget _buildIndicator() {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: List.generate(widget.screenshotPaths.length, (i) {
+        final isActive = i == _current;
+        return AnimatedContainer(
+          duration: const Duration(milliseconds: 250),
+          margin: const EdgeInsets.symmetric(horizontal: 5),
+          width: isActive ? 14 : 8,
+          height: 8,
+          decoration: BoxDecoration(
+            color: isActive ? Colors.white : Colors.white54,
+            borderRadius: BorderRadius.circular(4),
+          ),
+        );
+      }),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: widget.width,
+      child: Column(
+        children: [
+          SizedBox(
+            height: widget.height,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                // Purplish-black gradient backdrop with soft glow
+                Positioned.fill(
+                  child: Container(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Image.asset(
+                        'assets/images/black_andPurpGrad.jpeg',
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                        height: double.infinity,
+                      ),
+                    ),
+                    decoration:  BoxDecoration(
+                      boxShadow: [
+                      // ambient glow
+                      BoxShadow(
+                        color: const Color(0xFFB33EFF).withOpacity(0.25),
+                        blurRadius: 80,
+                        spreadRadius: 12,
+                        offset: const Offset(0, 0),
+                      ),
+                      // depth
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.6),
+                        blurRadius: 40,
+                        spreadRadius: 0,
+                        offset: const Offset(0, 10),
+                      ),
+                    ],
+                    ),
+                  ),
+                ),
+                // Carousel card
+                Center(
+                  child: SizedBox(
+                    width: widget.width * 0.75,
+                    height: widget.height * 0.85,
+                    child: Stack(
+                      children: [
+                        // Floating card background
+                        Positioned.fill(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.white,
+                              boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.25),
+                                blurRadius: 40,
+                                spreadRadius: 4,
+                                offset: const Offset(0, 20),
+                              ),
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.15),
+                                blurRadius: 20,
+                                spreadRadius: 2,
+                                offset: const Offset(0, 10),
+                              ),
+                            ],
+                            ),
+                          ),
+                        ),
+                        // Screenshot PageView
+                        Positioned.fill(
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: PageView.builder(
+                              controller: _pageController,
+                              itemCount: widget.screenshotPaths.length,
+                              itemBuilder: (context, index) {
+                                return Image.asset(
+                                  widget.screenshotPaths[index],
+                                  fit: BoxFit.contain,
+                                  width: double.infinity,
+                                  height: double.infinity,
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                        // Left arrow
+                        Positioned(
+                          left: 10,
+                          top: 0,
+                          bottom: 0,
+                          child: Center(
+                            child: GestureDetector(
+                              onTap: () => _goTo(-1),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.black.withOpacity(0.2),
+                                  shape: BoxShape.circle,
+                                ),
+                                padding: const EdgeInsets.all(10),
+                                child: const Icon(
+                                  Icons.arrow_back_ios_new,
+                                  color: Colors.white,
+                                  size: 16,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        // Right arrow
+                        Positioned(
+                          right: 10,
+                          top: 0,
+                          bottom: 0,
+                          child: Center(
+                            child: GestureDetector(
+                              onTap: () => _goTo(1),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.black.withOpacity(0.2),
+                                  shape: BoxShape.circle,
+                                ),
+                                padding: const EdgeInsets.all(10),
+                                child: const Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Colors.white,
+                                  size: 16,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 16),
+          _buildIndicator(),
+        ],
       ),
     );
   }
