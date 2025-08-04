@@ -1,5 +1,9 @@
+// ignore_for_file: avoid_unnecessary_containers
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:conait/Components/neon_card.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class CotreeDesc extends StatefulWidget {
   const CotreeDesc({super.key});
@@ -9,6 +13,24 @@ class CotreeDesc extends StatefulWidget {
 }
 
 class _CotreeDescState extends State<CotreeDesc> {
+  final List<String> screenshotPaths = [
+    'assets/images/Cotree_1.png',
+    'assets/images/Cotree_2.png',
+    'assets/images/Cotree_3.png',
+    'assets/images/Cotree_4.png',
+    'assets/images/Cotree_5.png',
+    'assets/images/Cotree_6.png',
+    'assets/images/Cotree_7.png',
+    'assets/images/Cotree_8.png',
+    'assets/images/Cotree_9.png',
+    'assets/images/Cotree_10.png',
+    'assets/images/Cotree_11png',
+    'assets/images/Cotree_12.png',
+    'assets/images/Cotree_13.png',
+    'assets/images/Cotree_14.png',
+    // Add more asset paths as needed
+  ];
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -129,24 +151,13 @@ class _CotreeDescState extends State<CotreeDesc> {
               ),
               // Gradient image below all text
               const SizedBox(height: 48),
-              Stack(
-                alignment: Alignment.center,
-                children: [
-                  Image.asset(
-                    'images/cotree_gradient.png',
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                    alignment: Alignment.topCenter,
-                  ),
-                  Image.asset(
-                    'images/cotree_hand.png',
-                    fit: BoxFit.contain,
-                  ),
-                ],
+              Image.asset(
+                'images/cotree_gradient.png',
+                width: double.infinity,
+                fit: BoxFit.cover,
+                alignment: Alignment.topCenter,
               ),
-
               const SizedBox(height: 100),
-
               // New section matching the reference
               Padding(
                 padding:
@@ -213,7 +224,7 @@ class _CotreeDescState extends State<CotreeDesc> {
               const SizedBox(height: 40),
               // Features row
               Padding(
-                padding: const EdgeInsets.only(left: 50, right: 50),
+                padding: const EdgeInsets.only(left: 80, right: 80),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -288,21 +299,170 @@ class _CotreeDescState extends State<CotreeDesc> {
                               color: Colors.black.withOpacity(0.7),
                             ),
                           ),
+                          const SizedBox(height: 16),
                         ],
                       ),
                     ),
                   ],
                 ),
               ),
-
-              // Coverflow-style carousel section
               const SizedBox(height: 40),
-              SizedBox(
-                height: 500, // Adjust height as needed
-                width: double.infinity,
-                child: _CoverflowCarousel(),
+              Padding(
+                padding: const EdgeInsets.only(left: 50, top: 30, right: 50),
+                child: Text(
+                    "Cotree is a modern professional hub where you can showcase your projects, resume, writing, \nand achievements in a flexible, Notion-style layout \nwhile also connecting with peers and mentors like on LinkedIn.",
+                    style: GoogleFonts.inter(
+                      fontSize: 25,
+                      color: Colors.black.withOpacity(0.7),
+                    )),
               ),
-              const SizedBox(height: 40),
+
+              // --- Carousel Section ---
+              const SizedBox(height: 50),
+              CarouselSlider(
+                options: CarouselOptions(
+                  height: 500,
+                  enlargeCenterPage: true,
+                  enableInfiniteScroll: true,
+                  autoPlay: true,
+                  viewportFraction: 0.2,
+                ),
+                items: screenshotPaths.map((path) {
+                  return Builder(
+                    builder: (BuildContext context) {
+                      return NeonCard(
+                        intensity: 0.5,
+                        glowSpread: 0.8,
+                        child: Container(
+                          width: 250,
+                          height: 500,
+                          alignment: Alignment.center,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(12),
+                            child: Image.asset(
+                              path,
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                }).toList(),
+              ),
+              const SizedBox(height: 70),
+              // --- End Carousel Section ---
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 24.0, vertical: 40),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Headline Row
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Work Smarter",
+                              style: GoogleFonts.inter(
+                                fontSize: 60,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            ),
+                            Text(
+                              "Every Day",
+                              style: GoogleFonts.playfairDisplay(
+                                fontSize: 50,
+                                fontStyle: FontStyle.italic,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 12.0),
+                          child: Text(
+                            "\nHelpful Tools. Actionable Tips.\nBetter Habits.",
+                            style: GoogleFonts.inter(
+                              fontSize: 18,
+                              color: Colors.black.withOpacity(0.7),
+                            ),
+                            textAlign: TextAlign.right,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 32),
+                    // Main Content Row
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment
+                          .center, // <-- Vertically center children
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        // Left: Image with rounded corners, vertically centered
+                        Container(
+                          height: 200,
+                          width: 300,
+                          // <-- Ensures child is centered vertically
+                          child: Image.asset(
+                            'assets/images/cotree_logo.png', // <-- Replace with your image path
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+
+                        // Right: Features grid
+                        const Column(
+                          children: [
+                            _FeatureItem(
+                              number: "01",
+                              title: "Daily Planning Tips",
+                              desc:
+                                  "Start each morning with a quick overview and organized priorities for maximum focus.",
+                            ),
+                            _FeatureItem(
+                              number: "03",
+                              title: "End-of-Day Review",
+                              desc:
+                                  "Reflect on progress and prepare for tomorrow with a simple nightly check-in.",
+                            ),
+                            _FeatureItem(
+                              number: "05",
+                              title: "Quick Notes",
+                              desc:
+                                  "Capture thoughts, ideas, and reminders instantly without breaking your flow.",
+                            ),
+                          ],
+                        ),
+                        const Column(children: [
+                          const _FeatureItem(
+                            number: "04",
+                            title: "Recurring Tasks",
+                            desc:
+                                "Automate routines so tasks requiring least thinking are handled automatically.",
+                          ),
+                          _FeatureItem(
+                            number: "05",
+                            title: "Goal Tracking",
+                            desc:
+                                "Stay on track as you monitor goals and watch your progress with built-in tracking tools.",
+                          ),
+                          _FeatureItem(
+                            number: "06",
+                            title: "Focus Sessions",
+                            desc:
+                                "Increase focus with time-blocked sessions and built-in focus music.",
+                          ),
+                        ])
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
@@ -333,188 +493,52 @@ class _AppBarTab extends StatelessWidget {
   }
 }
 
-class _CarouselCard extends StatelessWidget {
-  final String imageUrl;
-  final double rotation;
-  final double width;
-  final double height;
-  const _CarouselCard(
-      {required this.imageUrl,
-      required this.rotation,
-      required this.width,
-      required this.height});
+class _FeatureItem extends StatelessWidget {
+  final String number;
+  final String title;
+  final String desc;
+
+  const _FeatureItem({
+    required this.number,
+    required this.title,
+    required this.desc,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Transform.rotate(
-      angle: rotation,
-      child: Container(
-        width: 60,
-        height: 300,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(24),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.12),
-              blurRadius: 16,
-              offset: const Offset(0, 8),
+    return Container(
+      padding: const EdgeInsets.all(16),
+      width: 300,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            number,
+            style: GoogleFonts.birthstone(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: const Color.fromARGB(255, 218, 85, 129),
             ),
-          ],
-        ),
-        clipBehavior: Clip.antiAlias,
-        child: Image.network(
-          imageUrl,
-          fit: BoxFit.cover,
-        ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            title,
+            style: GoogleFonts.inter(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            desc,
+            style: GoogleFonts.inter(
+              fontSize: 14,
+              color: Colors.black.withOpacity(0.7),
+            ),
+          ),
+        ],
       ),
-    );
-  }
-}
-
-class _CoverflowCarousel extends StatefulWidget {
-  @override
-  State<_CoverflowCarousel> createState() => _CoverflowCarouselState();
-}
-
-class _CoverflowCarouselState extends State<_CoverflowCarousel> {
-  final PageController _pageController =
-      PageController(viewportFraction: 0.38, initialPage: 3);
-  final List<String> images = [
-    'assets/images/Cotree_1.png',
-    'assets/images/Cotree_2.png',
-    'assets/images/Cotree_3.png',
-    'assets/images/Cotree_4.png',
-    'assets/images/Cotree_5.png',
-    'assets/images/Cotree_6.png',
-    'assets/images/Cotree_7.png',
-    'assets/images/Cotree_8.png',
-    'assets/images/Cotree_9.png',
-    'assets/images/Cotree_10.png',
-    'assets/images/Cotree_11.png',
-    'assets/images/Cotree_12.png',
-    'assets/images/Cotree_13.png',
-    'assets/images/Cotree_14.png',
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return PageView.builder(
-      controller: _pageController,
-      itemCount: images.length,
-      physics: const BouncingScrollPhysics(),
-      itemBuilder: (context, index) {
-        return AnimatedBuilder(
-          animation: _pageController,
-          builder: (context, child) {
-            double value = 0;
-            if (_pageController.position.haveDimensions) {
-              value = _pageController.page! - index;
-            } else {
-              value = (_pageController.initialPage - index).toDouble();
-            }
-            value = value.clamp(-1, 1);
-            final double scale = 1 - (value.abs() * 0.25);
-            final double angle = value * 0.25;
-            return Transform(
-              alignment: Alignment.center,
-              transform: Matrix4.identity()
-                ..scale(scale)
-                ..rotateZ(angle),
-              child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-                width: 10, // Set your desired width
-                height: 500, // Set your desired height
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(24),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.12),
-                      blurRadius: 16,
-                      offset: const Offset(0, 8),
-                    ),
-                  ],
-                ),
-                clipBehavior: Clip.antiAlias,
-                child: Image.asset(
-                  images[index],
-                  fit: BoxFit.contain,
-                ),
-              ),
-            );
-          },
-        );
-      },
-    );
-  }
-}
-
-class _VerticalCoverflowCarousel extends StatefulWidget {
-  @override
-  State<_VerticalCoverflowCarousel> createState() =>
-      _VerticalCoverflowCarouselState();
-}
-
-class _VerticalCoverflowCarouselState
-    extends State<_VerticalCoverflowCarousel> {
-  final PageController _pageController =
-      PageController(viewportFraction: 0.55, initialPage: 3);
-  final List<String> images = [
-    'https://randomuser.me/api/portraits/men/1.jpg',
-    'https://randomuser.me/api/portraits/men/2.jpg',
-    'https://randomuser.me/api/portraits/women/3.jpg',
-    'https://randomuser.me/api/portraits/women/4.jpg',
-    'https://randomuser.me/api/portraits/men/5.jpg',
-    'https://randomuser.me/api/portraits/women/6.jpg',
-    'https://randomuser.me/api/portraits/men/7.jpg',
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return PageView.builder(
-      controller: _pageController,
-      itemCount: images.length,
-      scrollDirection: Axis.vertical,
-      physics: const BouncingScrollPhysics(),
-      itemBuilder: (context, index) {
-        return AnimatedBuilder(
-          animation: _pageController,
-          builder: (context, child) {
-            double value = 0;
-            if (_pageController.position.haveDimensions) {
-              value = _pageController.page! - index;
-            } else {
-              value = (_pageController.initialPage - index).toDouble();
-            }
-            value = value.clamp(-1, 1);
-            final double scale = 1 - (value.abs() * 0.25);
-            return Center(
-              child: Transform.scale(
-                scale: scale,
-                child: Container(
-                  margin: const EdgeInsets.symmetric(vertical: 16),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(24),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.12),
-                        blurRadius: 16,
-                        offset: const Offset(0, 8),
-                      ),
-                    ],
-                  ),
-                  clipBehavior: Clip.antiAlias,
-                  child: Image.network(
-                    images[index],
-                    fit: BoxFit.cover,
-                    width: 180, // Portrait: width < height
-                    height: 300, // Portrait: height > width
-                  ),
-                ),
-              ),
-            );
-          },
-        );
-      },
     );
   }
 }
